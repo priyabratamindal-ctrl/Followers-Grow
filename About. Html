@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - Followers Master</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f4f6fb;
+  color:#172033;
+}
+
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  width:240px;
+  height:100vh;
+  background:#0b1424;
+  color:white;
+  padding:22px 14px;
+}
+
+.logo{
+  font-size:23px;
+  font-weight:bold;
+  padding:8px 14px 28px;
+}
+
+.logo span{
+  color:#7657ff;
+}
+
+.menu a{
+  display:block;
+  color:#d9deeb;
+  text-decoration:none;
+  padding:14px;
+  margin:5px 0;
+  border-radius:9px;
+}
+
+.menu a:hover,
+.menu a.active{
+  background:#6948ef;
+  color:white;
+}
+
+.main{
+  margin-left:240px;
+  min-height:100vh;
+}
+
+.top{
+  height:72px;
+  background:white;
+  border-bottom:1px solid #e7e9ef;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+}
+
+.balance{
+  font-weight:bold;
+  color:#5c43df;
+}
+
+.content{
+  max-width:900px;
+  margin:24px auto;
+  padding:0 16px;
+}
+
+.card{
+  background:white;
+  border:1px solid #e0e3ea;
+  border-radius:14px;
+  padding:30px;
+  box-shadow:0 5px 20px rgba(0,0,0,.04);
+  margin-bottom:18px;
+}
+
+.hero{
+  background:#f3efff;
+  border:1px solid #ded6ff;
+  text-align:center;
+}
+
+.hero h1{
+  color:#6045e7;
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#5d6678;
+  line-height:1.7;
+}
+
+h2{
+  color:#6045e7;
+  margin-bottom:12px;
+}
+
+p{
+  color:#5d6678;
+  line-height:1.8;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:20px;
+}
+
+.feature{
+  border:1px solid #e2e4ea;
+  border-radius:10px;
+  padding:20px;
+  background:#fcfcff;
+}
+
+.feature h3{
+  margin-bottom:8px;
+}
+
+.feature p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.contact{
+  background:#eefaf2;
+  border:1px solid #bfe2ca;
+}
+
+.mobile{
+  display:none;
+}
+
+@media(max-width:800px){
+
+  .sidebar{
+    left:-250px;
+    transition:.25s;
+  }
+
+  .sidebar.show{
+    left:0;
+  }
+
+  .main{
+    margin-left:0;
+  }
+
+  .mobile{
+    display:block;
+    background:#6948ef;
+    color:white;
+    border:0;
+    border-radius:7px;
+    padding:8px 11px;
+    margin-right:10px;
+  }
+
+  .top-left{
+    display:flex;
+    align-items:center;
+  }
+
+  .content{
+    margin:15px auto;
+    padding:0 12px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar" id="sidebar">
+
+  <div class="logo">
+    ♛ Followers <span>Master</span>
+  </div>
+
+  <nav class="menu">
+
+    <a href="index.html">⌂ Dashboard</a>
+
+    <a href="index.html">☷ New Order</a>
+
+    <a href="#">▣ My Orders</a>
+
+    <a href="#">⚙ Services</a>
+
+    <a href="index.html">▣ Add Funds</a>
+
+    <a href="#">↻ Transactions</a>
+
+    <a href="about.html" class="active">
+      ⓘ About
+    </a>
+
+    <a href="#">? Support</a>
+
+  </nav>
+
+</aside>
+
+
+<main class="main">
+
+<header class="top">
+
+  <div class="top-left">
+
+    <button
+      class="mobile"
+      onclick="toggleMenu()">
+      ☰
+    </button>
+
+    <h2>About Us</h2>
+
+  </div>
+
+  <div class="balance">
+    Balance: ₹0.00
+  </div>
+
+</header>
+
+
+<section class="content">
+
+  <div class="card hero">
+
+    <h1>
+      About Followers Master
+    </h1>
+
+    <p>
+      Welcome to Followers Master — a simple and
+      user-friendly social media service panel
+      designed to make managing your orders easy
+      and convenient.
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>
+      Who We Are
+    </h2>
+
+    <p>
+      Followers Master is a modern web-based panel
+      concept where users can browse available social
+      media services, place orders and manage their
+      account from one convenient dashboard.
+    </p>
+
+
+    <div class="features">
+
+      <div class="feature">
+
+        <h3>
+          ⚡ Easy to Use
+        </h3>
+
+        <p>
+          Simple navigation and a clean interface make
+          the panel easy to use on both mobile and
+          desktop devices.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <h3>
+          📱 Mobile Friendly
+        </h3>
+
+        <p>
+          The website is responsive and designed to
+          work smoothly on smartphones, tablets and
+          computers.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <h3>
+          🔒 Account Safety
+        </h3>
+
+        <p>
+          Keep your account credentials and payment
+          PINs private. Never share OTPs or UPI PINs.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>
+      Our Goal
+    </h2>
+
+    <p>
+      Our goal is to provide a straightforward
+      dashboard experience with clear service
+      information, easy order management and a
+      convenient payment interface.
+    </p>
+
+  </div>
+
+
+  <div class="card contact">
+
+    <h2>
+      Need Help?
+    </h2>
+
+    <p>
+      If you need assistance with your account or
+      an order, please use the Support section of
+      the website.
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<script>
+
+function toggleMenu(){
+
+  document
+    .getElementById("sidebar")
+    .classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>
