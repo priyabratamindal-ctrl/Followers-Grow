@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Followers Master - Payment</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f4f6fb;
+  color:#172033;
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  width:240px;
+  height:100vh;
+  background:#0b1424;
+  color:white;
+  padding:22px 14px;
+}
+
+.logo{
+  font-size:23px;
+  font-weight:bold;
+  padding:8px 14px 28px;
+}
+
+.logo span{
+  color:#7657ff;
+}
+
+.menu a{
+  display:block;
+  color:#d9deeb;
+  text-decoration:none;
+  padding:14px;
+  margin:5px 0;
+  border-radius:9px;
+}
+
+.menu a:hover,
+.menu a.active{
+  background:#6948ef;
+  color:white;
+}
+
+/* MAIN */
+.main{
+  margin-left:240px;
+  min-height:100vh;
+}
+
+.top{
+  height:72px;
+  background:white;
+  border-bottom:1px solid #e7e9ef;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+}
+
+.top h2{
+  font-size:21px;
+}
+
+.balance{
+  font-weight:bold;
+  color:#5c43df;
+}
+
+/* CONTENT */
+.content{
+  max-width:900px;
+  margin:24px auto;
+  padding:0 16px;
+}
+
+.hero{
+  background:#f3efff;
+  border:1px solid #ded6ff;
+  border-radius:14px 14px 0 0;
+  padding:28px;
+}
+
+.hero h1{
+  color:#6045e7;
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.hero p{
+  color:#5d6678;
+}
+
+.box{
+  background:white;
+  border:1px solid #e0e3ea;
+  border-top:0;
+  border-radius:0 0 14px 14px;
+  padding:24px;
+  box-shadow:0 5px 20px rgba(0,0,0,.04);
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #d8dce5;
+  border-radius:8px;
+  font-size:16px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#6948ef;
+}
+
+.quick{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin:12px 0 24px;
+}
+
+.quick button{
+  padding:12px;
+  background:white;
+  border:1px solid #d9dce6;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.quick button:hover{
+  border-color:#6948ef;
+  color:#6948ef;
+}
+
+h2{
+  margin:20px 0 14px;
+  font-size:20px;
+}
+
+/* PAYMENT OPTIONS */
+.methods{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.method{
+  padding:14px;
+  border:1px solid #d9dce6;
+  background:white;
+  border-radius:9px;
+  cursor:pointer;
+  text-align:center;
+  font-weight:bold;
+}
+
+.method.active{
+  border:2px solid #6948ef;
+  color:#6045e7;
+  background:#f8f6ff;
+}
+
+/* PAYMENT BOX */
+.payment{
+  border:1px solid #e0e3ea;
+  border-radius:12px;
+  padding:20px;
+  background:#fcfcff;
+}
+
+.payment h2{
+  color:#6045e7;
+}
+
+.payment p{
+  color:#697184;
+  margin-bottom:18px;
+}
+
+.qrwrap{
+  display:flex;
+  gap:28px;
+  align-items:center;
+}
+
+.qr{
+  width:300px;
+  height:300px;
+  object-fit:contain;
+  background:white;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:8px;
+}
+
+.details{
+  flex:1;
+}
+
+.detail{
+  padding:14px 0;
+  border-bottom:1px solid #e7e8ec;
+}
+
+.detail small{
+  display:block;
+  color:#697184;
+  margin-bottom:6px;
+}
+
+.detail strong{
+  font-size:16px;
+}
+
+.purple{
+  color:#6045e7;
+}
+
+.pay{
+  width:100%;
+  margin-top:18px;
+  padding:14px;
+  border:0;
+  border-radius:8px;
+  background:#6948ef;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.pay:hover{
+  background:#5637dc;
+}
+
+/* NOTICE */
+.notice{
+  margin-top:18px;
+  background:#fff8e9;
+  border:1px solid #efd69a;
+  border-radius:10px;
+  padding:17px;
+}
+
+.notice h3{
+  color:#a66a00;
+  margin-bottom:8px;
+}
+
+.notice li{
+  margin:7px 0 0 20px;
+  color:#5e574a;
+}
+
+.secure{
+  margin-top:15px;
+  padding:16px;
+  background:#eefaf2;
+  border:1px solid #bfe2ca;
+  border-radius:10px;
+  color:#24834b;
+  font-weight:bold;
+}
+
+/* MOBILE */
+.mobile{
+  display:none;
+}
+
+@media(max-width:800px){
+
+  .sidebar{
+    left:-250px;
+    transition:.25s;
+  }
+
+  .sidebar.show{
+    left:0;
+  }
+
+  .main{
+    margin-left:0;
+  }
+
+  .mobile{
+    display:block;
+    background:#6948ef;
+    color:white;
+    border:0;
+    border-radius:7px;
+    padding:8px 11px;
+    margin-right:10px;
+  }
+
+  .top-left{
+    display:flex;
+    align-items:center;
+  }
+
+  .content{
+    margin:15px auto;
+    padding:0 12px;
+  }
+
+  .qrwrap{
+    flex-direction:column;
+  }
+
+  .qr{
+    width:min(100%,320px);
+    height:auto;
+  }
+
+  .details{
+    width:100%;
+  }
+
+  .quick{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .methods{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar" id="sidebar">
+
+  <div class="logo">
+    ♛ Followers <span>Master</span>
+  </div>
+
+  <nav class="menu">
+
+    <a href="#">⌂ Dashboard</a>
+
+    <a href="#">☷ New Order</a>
+
+    <a href="#">▣ My Orders</a>
+
+    <a href="#">⚙ Services</a>
+
+    <a href="#" class="active">▣ Add Funds</a>
+
+    <a href="#">↻ Transactions</a>
+
+    <a href="#">? Support</a>
+
+  </nav>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+<header class="top">
+
+  <div class="top-left">
+
+    <button class="mobile"
+            onclick="toggleMenu()">
+      ☰
+    </button>
+
+    <h2>Payment</h2>
+
+  </div>
+
+  <div class="balance">
+    Balance: ₹0.00
+  </div>
+
+</header>
+
+
+<section class="content">
+
+  <div class="hero">
+
+    <h1>Add Funds</h1>
+
+    <p>
+      Choose a payment method and complete your payment.
+    </p>
+
+  </div>
+
+
+  <div class="box">
+
+    <!-- NAME -->
+
+    <label for="name">
+      Your Name
+    </label>
+
+    <input
+      id="name"
+      type="text"
+      placeholder="Enter your name"
+    >
+
+
+    <!-- AMOUNT -->
+
+    <label
+      for="amount"
+      style="margin-top:16px"
+    >
+      Enter Amount
+    </label>
+
+    <input
+      id="amount"
+      type="number"
+      min="50"
+      placeholder="₹ Enter amount"
+    >
+
+
+    <!-- QUICK AMOUNT -->
+
+    <div class="quick">
+
+      <button onclick="setAmount(100)">
+        ₹100
+      </button>
+
+      <button onclick="setAmount(200)">
+        ₹200
+      </button>
+
+      <button onclick="setAmount(500)">
+        ₹500
+      </button>
+
+      <button onclick="setAmount(1000)">
+        ₹1000
+      </button>
+
+    </div>
+
+
+    <!-- PAYMENT OPTIONS -->
+
+    <h2>
+      Payment Options
+    </h2>
+
+    <div class="methods">
+
+      <button
+        class="method active"
+        onclick="selectMethod(this)"
+      >
+        UPI / QR
+      </button>
+
+      <button
+        class="method"
+        onclick="selectMethod(this)"
+      >
+        Card
+      </button>
+
+      <button
+        class="method"
+        onclick="selectMethod(this)"
+      >
+        Net Banking
+      </button>
+
+    </div>
+
+
+    <!-- QR PAYMENT -->
+
+    <div class="payment">
+
+      <h2>
+        Pay using UPI
+      </h2>
+
+      <p>
+        Scan the QR code with your UPI app.
+      </p>
+
+
+      <div class="qrwrap">
+
+        <!-- তোমার QR এখানে -->
+        <img
+          class="qr"
+          src="qr.jpg"
+          alt="UPI QR Code"
+        >
+
+
+        <div class="details">
+
+          <div class="detail">
+
+            <small>
+              Name
+            </small>
+
+            <strong id="showName">
+              Enter your name
+            </strong>
+
+          </div>
+
+
+          <div class="detail">
+
+            <small>
+              Amount
+            </small>
+
+            <strong id="showAmount">
+              Enter amount above
+            </strong>
+
+          </div>
+
+
+          <div class="detail">
+
+            <small>
+              Payment Method
+            </small>
+
+            <strong class="purple">
+              qr.jpg
+            </strong>
+
+          </div>
+
+
+          <div class="detail">
+
+            <small>
+              Payment Status
+            </small>
+
+            <strong>
+              Pending
+            </strong>
+
+          </div>
+
+
+          <button
+            class="pay"
+            onclick="payNow()"
+          >
+            I Have Paid
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- NOTICE -->
+
+    <div class="notice">
+
+      <h3>
+        ⓘ Important
+      </h3>
+
+      <ul>
+
+        <li>
+          Verify the payment details before paying.
+        </li>
+
+        <li>
+          Minimum add-funds amount is ₹50.
+        </li>
+
+        <li>
+          Never share your UPI PIN or OTP.
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- SECURE -->
+
+    <div class="secure">
+
+      ✓ Secure Payment Interface
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<script>
+
+function toggleMenu(){
+
+  document
+    .getElementById("sidebar")
+    .classList.toggle("show");
+
+}
+
+
+function setAmount(value){
+
+  document
+    .getElementById("amount")
+    .value = value;
+
+  update();
+
+}
+
+
+function update(){
+
+  const name =
+    document
+      .getElementById("name")
+      .value
+      .trim();
+
+  const amount =
+    document
+      .getElementById("amount")
+      .value;
+
+  document
+    .getElementById("showName")
+    .textContent =
+      name || "Enter your name";
+
+  document
+    .getElementById("showAmount")
+    .textContent =
+      amount
+        ? "₹" + amount
+        : "Enter amount above";
+
+}
+
+
+document
+  .getElementById("name")
+  .addEventListener("input", update);
+
+
+document
+  .getElementById("amount")
+  .addEventListener("input", update);
+
+
+function selectMethod(button){
+
+  document
+    .querySelectorAll(".method")
+    .forEach(function(item){
+
+      item.classList.remove("active");
+
+    });
+
+  button.classList.add("active");
+
+}
+
+
+function payNow(){
+
+  const name =
+    document
+      .getElementById("name")
+      .value
+      .trim();
+
+  const amount =
+    document
+      .getElementById("amount")
+      .value;
+
+
+  if(!name){
+
+    alert("Please enter your name.");
+
+    return;
+
+  }
+
+
+  if(!amount || Number(amount) < 50){
+
+    alert("Minimum amount is ₹50.");
+
+    return;
+
+  }
+
+
+  alert(
+    "Payment submitted as demo.\\n\\n" +
+    "Real payment verification requires a payment gateway."
+  );
+
+}
+
+</script>
+
+</body>
+</html>
